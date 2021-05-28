@@ -7,6 +7,12 @@ use App\Models\Produto;
 
 class ProdutosController extends Controller
 {
+    public function getAll(){
+        $produtos = Produto::get();
+
+        return view('produtos.list',['produtos' => $produtos]);
+    }
+
     public function create()
     {    
         return view('produtos.create');
@@ -14,8 +20,6 @@ class ProdutosController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
-
         Produto::create([
             'nome' => $request->nome,
             'custo' => $request->custo,
