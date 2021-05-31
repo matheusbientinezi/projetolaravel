@@ -17,7 +17,9 @@
         <input type="text" name="preco" value="{{ $produto->preco}}"> <br />
         <label for="">Quantidade</label> <br />
         <input type="text" name="quantidade" value="{{ $produto->quantidade}}"> <br />
-        <button>Salvar</button>
+        <br />
+        <button>Salvar</button> <a href="/produtos">Cancelar</a>
+
     </form>
 </body>
 </html>

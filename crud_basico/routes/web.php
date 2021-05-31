@@ -14,16 +14,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'App\Http\Controllers\HomeController');
+
+
+
+Route::prefix('/config')->group(function(){
+
+    Route::get('/', 'App\Http\Controllers\ConfigController@index');
+    Route::get('info', 'App\Http\Controllers\ConfigController@info');
+    Route::get('permissoes', 'App\Http\Controllers\ConfigController@permissoes');
+
 });
 
-Route::get('/produtos', 'App\Http\Controllers\ProdutosController@getAll');
-Route::get('/produtos/novo', 'App\Http\Controllers\ProdutosController@create');
-Route::post('/produtos/novo','App\Http\Controllers\ProdutosController@store')->name('registra_produtos');
-Route::get('/produtos/ver/{id}', 'App\Http\Controllers\ProdutosController@show');
-Route::get('/produtos/editar/{id}', 'App\Http\Controllers\ProdutosController@edit');
-Route::post('/produtos/editar/{id}', 'App\Http\Controllers\ProdutosController@update')->name('alterar_produto');
-Route::get('/produtos/excluir/{id}', 'App\Http\Controllers\ProdutosController@delete');
-Route::post('/produtos/excluir/{id}', 'App\Http\Controllers\ProdutosController@destroy')->name('excluir_produto');
 
+
+Route::prefix('/produtos')->group(function(){
+
+    Route::get('/', 'App\Http\Controllers\ProdutosController@getAll');
+    Route::get('novo', 'App\Http\Controllers\ProdutosController@create');
+    Route::post('novo','App\Http\Controllers\ProdutosController@store')->name('registra_produtos');
+    Route::get('ver/{id}', 'App\Http\Controllers\ProdutosController@showId');
+    Route::get('editar/{id}', 'App\Http\Controllers\ProdutosController@edit');
+    Route::post('editar/{id}', 'App\Http\Controllers\ProdutosController@update')->name('alterar_produto');
+    Route::get('excluir/{id}', 'App\Http\Controllers\ProdutosController@delete');
+    Route::post('excluir/{id}', 'App\Http\Controllers\ProdutosController@destroy')->name('excluir_produto');
+    
+});
+
+
+Route::fallback(function(){
+
+    return view('404');
+
+});

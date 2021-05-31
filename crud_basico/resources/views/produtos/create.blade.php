@@ -17,7 +17,7 @@
         <input type="text" name="preco"> <br />
         <label for="">Quantidade</label> <br />
         <input type="text" name="quantidade"> <br />
-        <button>Salvar</button>
+        <button>Salvar</button><a href="/produtos">Cancelar</a>
     </form>
 </body>
 </html>

@@ -7,7 +7,8 @@ use App\Models\Produto;
 
 class ProdutosController extends Controller
 {
-    public function getAll(){
+    public function getAll()
+    {
         $produtos = Produto::get();
 
         return view('produtos.list',['produtos' => $produtos]);
@@ -27,12 +28,19 @@ class ProdutosController extends Controller
             'quantidade' => $request->quantidade,
         ]);
         
-        return "Produto Criado com Sucesso!";
+        return "Produto Criado com Sucesso!
+                <br>
+                <a href='/produtos'>Voltar</a>";
     }
 
-    public function show($id)
+    public function showId($id)
     {
         $produto = Produto::findOrFail($id);
+        return view('produtos.show',['produto' => $produto]);
+    }
+    public function showName($nome)
+    {
+        $produto = Produto::findOrFail($nome);
         return view('produtos.show',['produto' => $produto]);
     }
 
@@ -53,7 +61,9 @@ class ProdutosController extends Controller
             'quantidade' => $request->quantidade,
         ]);
 
-        return "Produto Atualizado com Sucesso!";
+        return "Produto Atualizado com Sucesso! 
+                <br>
+                <a href='/produtos'>Voltar</a>";
     }
 
     public function delete($id)
